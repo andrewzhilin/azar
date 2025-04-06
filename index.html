@@ -50,11 +50,18 @@
     >
       <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
+      geometry="primitive: sphere"
+      material="color: #EFEFEF; shader: flat"
+      position="0 0.15 -5"
+      light="type: point; intensity: 5"
+      animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.10 -5; loop: true"></a-entity>
+
+    <!-- <a-entity
         gltf-model="Models/shiba/scene.gltf"
         scale="5 5 5"
         position="50 150 0"
       >
-      </a-entity>
+      </a-entity> -->
     </a-nft>
     <!-- static camera that moves according to the device movemenents -->
     <a-entity camera></a-entity>
