@@ -1,69 +1,62 @@
-<!-- import aframe and then ar.js with image tracking / location based features -->
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-
-<!-- style for the loader -->
-<style>
-  .arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .arjs-loader div {
-    text-align: center;
-    font-size: 1.25em;
-    color: white;
-  }
-</style>
-
-<body style="margin : 0px; overflow: hidden;">
-  <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AR Sphere on Marker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    .arjs-loader {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading indicator -->
   <div class="arjs-loader">
-    <div>Loading...</div>
+    <div>Loading AR, please wait...</div>
   </div>
 
-  <!-- a-frame scene -->
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  <!-- AR Scene -->
+  <a-scene 
+    vr-mode-ui="enabled: false"
+    renderer="logarithmicDepthBuffer: true"
+    embedded 
+    arjs="sourceType: webcam; debugUIEnabled: false;"
   >
-    <!-- a-nft is the anchor that defines an Image Tracking entity -->
-    <!-- on 'url' use the path to the Image Descriptors created before. -->
-    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-    <a-nft
-      type="nft"
-      url="Trackers/hiro"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
-    >
-      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-      <a-entity
-      geometry="primitive: sphere"
-      material="color: #EFEFEF; shader: flat"
-      position="0 0.15 -5"
-      light="type: point; intensity: 5"
-      animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.10 -5; loop: true"></a-entity>
-
-    <!-- <a-entity
-        gltf-model="Models/shiba/scene.gltf"
-        scale="5 5 5"
-        position="50 150 0"
-      >
-      </a-entity> -->
-    </a-nft>
-    <!-- static camera that moves according to the device movemenents -->
+    <!-- Marker definition (uses Hiro pattern by default) -->
+    <a-marker preset="hiro">
+      <!-- Red sphere that will appear on the marker -->
+      <a-sphere 
+        color="red" 
+        radius="0.5" 
+        position="0 0.5 0"
+      ></a-sphere>
+    </a-marker>
+    
+    <!-- Camera -->
     <a-entity camera></a-entity>
   </a-scene>
+
+  <script>
+    // Hide loader when AR is ready
+    document.querySelector('a-scene').addEventListener('loaded', function() {
+      document.querySelector('.arjs-loader').style.display = 'none';
+    });
+  </script>
 </body>
+</html>
