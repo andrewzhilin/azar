@@ -69,9 +69,9 @@
     embedded 
     arjs="trackingMethod: best; sourceType: webcam; detectionMode: mono; maxDetectionRate: 30;"
   >
-    <!-- T-Rex NFT Marker -->
+    <!-- NFT Marker -->
     <a-nft
-      id="trex-marker"
+      id="nft-marker"
       type="nft"
       url="./Trackers/CO-crop"
       smooth="true"
@@ -131,7 +131,7 @@
     });
 
     // Marker event listeners
-    const marker = document.getElementById('trex-marker');
+    const marker = document.getElementById('nft-marker');
     marker.addEventListener('markerFound', () => {
       markerStatus.textContent = 'Detected!';
       console.log('Marker found');
