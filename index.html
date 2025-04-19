@@ -45,6 +45,20 @@
     <div id="progress"></div>
   </div>
 
+  <script>
+    // Fix for GitHub Pages path resolution
+    const baseUrl = window.location.href.includes('github.io') 
+      ? window.location.pathname.split('/').slice(0, 3).join('/')
+      : '';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const marker = document.querySelector('a-nft');
+      if (marker) {
+        marker.setAttribute('url', baseUrl + '/Trackers/trex');
+      }
+    });
+  </script>
+  
   <div id="debug">
     Marker Status: <span id="marker-status">Not detected</span>
   </div>
