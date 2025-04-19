@@ -42,15 +42,16 @@
   >
     <!-- CO-crop NFT Marker -->
     <a-nft type="nft" url="./Trackers/CO-crop" smooth="true">
-      <a-entity position="0 0.5 0" rotation="0 0 0">
+      <a-entity position="0 0 0" rotation="0 0 0" scale="1 1 1">
         <!-- Primary Geometry -->
         <a-box 
-          color="#FF5722" 
-          width="1" 
-          height="1" 
-          depth="1"
-          shadow
-        ></a-box>
+    position="0 0.5 0" 
+    color="red" 
+    width="1" 
+    height="1" 
+    depth="1"
+    material="shader: flat"
+  ></a-box>
         
         <!-- Fallback Visible Wireframe -->
         <a-entity
