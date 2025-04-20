@@ -30,7 +30,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const marker = document.querySelector('a-nft');
       if (marker) {
-        marker.setAttribute('url', baseUrl + '/Trackers/CO-crop');
+        marker.setAttribute('url', baseUrl + '/Trackers/CO-qr');
       }
     });
   </script>
@@ -40,8 +40,8 @@
     embedded 
     arjs="trackingMethod: best; sourceType: webcam;"
   >
-    <!-- CO-crop NFT Marker -->
-    <a-nft type="nft" url="./Trackers/CO-crop" smooth="true">
+    <!-- CO-qr NFT Marker -->
+    <a-nft type="nft" url="./Trackers/CO-qr" smooth="true">
       <a-entity position="0 0 0" rotation="0 0 0" scale="1 1 1">
         <!-- Primary Geometry -->
         <a-box 
